@@ -7,18 +7,19 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import SearchEngine from '../../../components/SearchEngine';
+import '@testing-library/jest-dom/extend-expect';
 
 describe('SearchEngine Component', () => {
   test('renders SearchEngine component', () => {
     render(<SearchEngine />);
 
-    expect(screen.getByTestId('searchInput')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('enter city name')).toBeInTheDocument();
   });
 
   test('allows user to enter a search term', () => {
     render(<SearchEngine />);
     
-    const searchInput = screen.getByTestId('searchInput');
+    const searchInput = screen.getByPlaceholderText('enter city name');
     fireEvent.change(searchInput, { target: { value: 'Sunnyvale' } });
 
     expect(searchInput.value).toBe('Sunnyvale');

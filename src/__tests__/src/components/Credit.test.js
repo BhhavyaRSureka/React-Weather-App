@@ -5,8 +5,9 @@
 
 // ********RoostGPT********
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
-import Credit from '../../components/Credit.js';
+import { render, cleanup ,screen} from '@testing-library/react';
+import Credit from '../../../components/Credit';
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Credit component', () => {
   afterEach(cleanup);
@@ -29,7 +30,7 @@ describe('Credit component', () => {
   test('has correct links and URLs', () => {
     const { getByText } = render(<Credit />);
     const sheCodesLink = getByText('Chaimae Lamirine').closest('a');
-    const githubLink = getByText('Open sourced on Github').closest('a');
+    const githubLink = getByText('Open sourced on Github.').closest('a');
     
     expect(sheCodesLink).toHaveAttribute('href', 'https://www.shecodes.io/graduates/73033-chaimae-lamirine');
     expect(githubLink).toHaveAttribute('href', 'https://github.com/shemmee/React-Weather-App');
